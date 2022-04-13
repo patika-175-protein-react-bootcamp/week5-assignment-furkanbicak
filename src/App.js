@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import MoonIcon from './constans/MoonIcon.png'
 import Logo from './constans/logo.svg'
