@@ -1,128 +1,196 @@
 import React from 'react';
 import './App.css';
+import { Formik } from 'formik';
+import * as Yup from 'yup'
 import MoonIcon from './constans/MoonIcon.png'
 import Logo from './constans/logo.svg'
 
 function App() {
+    const LoginSchema = Yup.object().shape({
+        name: Yup
+            .string(),
+        surname: Yup
+            .string(),
+        userName: Yup
+            .string()
+            .required('Kullanıcı adı zorunlu'),    
+        email: Yup
+            .string()
+            .email('Lütfen geçerli bir e posta adresi girniz.')
+            .required('Eposta alanı zorunludur.'),
+        password: Yup
+            .string()
+            .typeError('Her karakteri kullanamazsın.')
+            .min(8, '8 karakterden kısa olamaz.')
+            .max(32,'32 karakterden fazla olamaz.')
+            .required('Şifre alanı zorunludur.')    
+    });
+
+
   return (
-    <div class="formContainer">
-    <div class="form_icon">
+    <div className="formContainer">
+    <div className="form_icon">
         <img src={MoonIcon} alt=""/>
     </div>
     
-    <div class="patika">
+    <div className="patika">
 
-        <div class="patika_logo">
+        <div className="patika_logo">
             <img  src={Logo} alt=""/>
         </div>
        
-        <h3 class="patika_title">
+        <h3 className="patika_title">
             <strong>YAZILIM PATİKALARI</strong>
         </h3>
-       <div class="patika_lorem">
+       <div className="patika_lorem">
             <p>Bootcamp'ler teknoloji kariyerine girmek isteyenler için yeni bir eğitim modelidir. Ekibini büyütmek isteyen şirketler bir bootcamp'lere sponsor olurlar. Teknik beceriler kazanmaya başlamış ancak işe girmeye hazır olmayan kişiler bootcamp'lere başvururlar. Seçilen adaylar 4-8 haftalık ücretsiz ve yoğun eğitime kabul alırlar. Bootcamp'lerde başarılı olan öğrenciler sponsor şirkette ya da sektörde başka şirketlere işe yerleşirler.</p>
        </div>
-       <div class="boxes">
-            <div class="boxOne">
+       <div className="boxes">
+            <div className="boxOne">
 
             </div>
-            <div class="boxTwo">
+            <div className="boxTwo">
 
             </div>
        </div>
      
     </div>
 
-    <div class="form">
-        <div class="form_titles">
-            <h3 class="title">
+    <div className="form">
+        <div className="form_titles">
+            <h3 className="title">
                 <strong>Kayıt</strong>
             </h3>
         </div>
-        <form>
-            <div class="form_row">
-                <div class="formGroup row">
-                    <div class="formGroup_title">
-                         <label class="required">İSİM</label>
+         
+        <Formik
+        initialValues={{
+            name: '',
+            surname: '',
+            email: '',
+            userName: '',
+            password: '',
+        }}
+        validationSchema={LoginSchema}
+
+        onSubmit={(values) => {
+            console.log(values)    
+        }}
+        >
+            {
+                ({ values, handleChange, handleSubmit, errors, touched }) =>
+
+            <form>
+            <div className="form_row">
+                <div className="formGroup row">
+                    <div className="formGroup_title">
+                         <label className="required">İSİM</label>
                     </div>
                      <input 
-                         class="form_input"
-                         type="text" 
-                         name="email"
-                         placeholder="İsmini gir"
+                        className="form_input"
+                        type="text" 
+                        name="name"
+                        placeholder="İsmini gir"
+                        value={values.name}
+                        onChange={handleChange}
                      />
                  </div>
-                 <div class="formGroup row">
-                   <div class="formGroup_title">
-                     <label class="required">SOYİSİM</label>
+                 <div className="formGroup row">
+                   <div className="formGroup_title">
+                     <label className="required">SOYİSİM</label>
                    </div>
                      <input
-                         class="form_input"
-                         type="text" 
-                         name="password"
-                         placeholder="Soyismini gir"
-                         
+                        className="form_input"
+                        type="text" 
+                        name="surname"
+                        placeholder="Soyismini gir"
+                        value={values.surname}
+                        onChange={handleChange}
+
                      />
                  </div>
             </div>
            
 
-            <div class="formGroup">
-                <div class="formGroup_title">
-                    <label class="required">E-POSTA</label>
+            <div className="formGroup">
+                <div className="formGroup_title">
+                    <label className="required">E-POSTA <span className='requried-color'> * </span></label>
                 </div>
                 <input 
-                    class="form_input"
+                    className="form_input"
                     type="text" 
-                    name="password"
+                    name="email"
                     placeholder="E-posta adresini gir"
+                    value={values.email}
+                    onChange={handleChange}
                 />
+                <div className='form_input_errors'>
+                    {errors.email}
+                </div>
             </div>
-            <div class="formGroup">
-                <div class="formGroup_title">
-                    <label class="required">KULLANICI ADI</label>
+            <div className="formGroup">
+                <div className="formGroup_title">
+                    <label className="required">KULLANICI ADI <span className='requried-color'> * </span></label>
                 </div>
                 <input 
-                    class="form_input"
+                    className="form_input"
                     type="text" 
-                    name="kullanıcıAdi"
+                    name="userName"
                     placeholder="Kullanıcı adını gir"
+                    value={values.userName}
+                    onChange={handleChange}
                 />
+                <div className='form_input_errors'>
+                    {errors.userName}
+                </div>
             </div>
-            <div class="formGroup">
-                <div class="formGroup_title">
-                    <label class="required">ŞİFRE</label>
+            <div className="formGroup">
+                <div className="formGroup_title">
+                    <label className="required">ŞİFRE <span className='requried-color'> * </span> </label>
                 </div>
                 <input 
-                    class="form_input"
+                    className="form_input"
                     type="password" 
                     name="password"
                     placeholder="Şifreni gir"
+                    value={values.password}
+                    onChange={handleChange}
                 />
+                <div className='form_input_errors'>
+                    {errors.password}
+                </div>
             </div>
-            <div class="formGroup">
-                <div class="formGroup_title">
-                    <label class="required">ŞİFRENİ TEKRAR GİR</label>
+            <div className="formGroup">
+                <div className="formGroup_title">
+                    <label className="required">ŞİFRENİ TEKRAR GİR <span className='requried-color'> * </span> </label>
                 </div>
                 <input
-                    class="form_input" 
+                    className="form_input" 
                     type="password" 
                     name="password"
                     placeholder="Şifreni doğrula"
                 />
+                <div className='form_input_errors'>
+                    {errors.password}
+                </div>
             </div>
-            <div class="formGroup">
+            <div className="formGroup">
                 <input
-                class="checkbox" 
+                className="checkbox" 
                     type="checkbox" 
                 />
-                <strong class="agreement">Sözleşmeyi kabul ediyorum</strong>
+                <strong className="agreement">Sözleşmeyi kabul ediyorum</strong>
             </div>
-            <div class="formGroup formButton">
-               <button class="loginButton" type="submit">KAYIT OL</button>
+            <div className="formGroup formButton">
+               <button className="loginButton" type="submit" onClick={handleSubmit}>KAYIT OL</button>
                <span></span>
             </div>
-        </form>
+            </form>
+
+            }
+            
+        </Formik>
+
     </div>
 </div>
   );

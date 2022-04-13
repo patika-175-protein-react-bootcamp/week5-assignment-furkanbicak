@@ -124,6 +124,11 @@ form div {
   border: 2px solid #8E8E8E;
   border-radius: 4px;
 }
+.form_input_errors{
+  margin: 0;
+  font-size: 16px;
+  color: #EE6356;
+}
 .checkbox{
   transform: scale(2);
   width: 4%;
@@ -158,4 +163,7 @@ form div {
 }
 .header{
  color: #4641F2;
+}
+.requried-color{
+  color: #EE6356;
 }
