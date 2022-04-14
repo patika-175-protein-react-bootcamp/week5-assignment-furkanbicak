@@ -4,12 +4,42 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root{
+  --black: #2C2C2C;
+  --white: #FFFF;
+  --patika: #444AFF;
+  --patikaDark: #FFBF5E;
+  --introduction: #DADADA;
+  --introductionDark: #8C8C8C;
+  
+}
+body.light {
+  --background-color: var(--white);
+  --background-color-button: var(--patika);
+  --background-color-introduction: var(--introduction);
+  --text-color: var(--black);
+  --text-color2: var(--patika);
+ 
+}
+
+body.dark {
+  --background-color: var(--black);
+  --background-color-button: var(--patikaDark);
+  --background-color-introduction:var(--introductionDark);
+  --text-color: var(--white);
+  --text-color2: var(--white);
+  
+}
+
 .formContainer{
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
   margin: auto;
+
+  background: var(--background-color);
+  color: var(--text-color);
+
 }
 .form_icon{
   position: absolute;
@@ -22,7 +52,7 @@
 }
 .patika{
   width: 50%;
-  background-color: #DADADA;
+  background-color: var(--background-color-introduction);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .patika_logo{
@@ -33,14 +63,14 @@
   font-family: 'Oxygen', sans-serif;
   font-weight: bold;
   font-size: 59px;
-  color: #444AFF;
+  color: var(--text-color2);
   margin: -100px 0 0 56px;
 }
 .patika_lorem{
   font-family: 'Oxygen', sans-serif;
   font-weight: bold;
   font-size: 28px;
-  color: #444AFF;
+  color: var(--text-color2);
   margin: 0 36px 0 56px;
 }
 .boxes{
@@ -54,7 +84,7 @@
   width: 35%;
   height: 96px;
   transform: skewX(-30deg);
-  background: #444AFF;
+  background: var(--background-color-button);
   mix-blend-mode: normal;
   box-shadow: 0px 4px 10px rgb(0 0 0 / 14%), 0px 1px 20px rgb(0 0 0 / 12%), 0px 2px 8px rgb(0 0 0 / 20%);
 }
@@ -64,7 +94,7 @@
   height: 96px;
   margin: 20px 60px 0 0 ;
   transform: skewX(-30deg);
-  background: #444AFF;
+  background: var(--background-color-button);
   mix-blend-mode: normal;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.14), 0px 1px 20px rgba(0, 0, 0, 0.12), 0px 2px 8px rgba(0, 0, 0, 0.2);
 }
@@ -73,6 +103,7 @@ form div {
   margin-top: 40px;
 }
 .form_titles h3 strong{
+  color: var(--text-color);
   margin-left: -18px;
 }
 .form{
@@ -112,7 +143,7 @@ form div {
   font-family: 'Oxygen', sans-serif;
   font-weight: bold;
   font-size: 20px;
-  color: #3C3C3C;
+  color: var(--text-color);
   letter-spacing: 0.15px;
   margin-bottom: 12px;
   
@@ -137,19 +168,20 @@ form div {
   font-family: 'Oxygen', sans-serif;
   font-size: 14px;
   color:    #8E8E8E;
+  margin-left: 10px;
 }
 .loginButton{
   width: 100%;
   height: 56px;
   color: white;
   border: 0;
-  background-color: #444AFF;
+  background-color: var(--background-color-button);
   border-radius: 4px
 }
 .form_titles h3{
   display: flex;
   flex-direction: row;
-  border-bottom: 4px solid #4641F2;
+  border-bottom: 4px solid var(--background-color-button);
   padding-bottom: 5px;
   width: 100px;
 }
