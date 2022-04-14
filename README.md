@@ -14,8 +14,11 @@ https://form-two-beta.vercel.app/
 
 
 ## 🤩 Screenshots
-
+### ☀️ Light Mode
 ![form-two-beta vercel app_ (3)](https://user-images.githubusercontent.com/80355473/163358468-84586e09-f7a2-41e9-9056-8bed4d5a9e65.png)
+
+### 🌙 Dark Mode
+![form-two-beta vercel app_](https://user-images.githubusercontent.com/80355473/163359819-dbac3152-5db8-4c34-8978-c6fb7f151bce.png)
 
 
 ## Available Scripts
